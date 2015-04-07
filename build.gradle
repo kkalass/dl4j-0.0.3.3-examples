@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+group = 'org.deeplearning4j'
+version = '0.0.3.3.3-SNAPSHOT'
+
+description = """DeepLearning4j Examples"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
+
+repositories {
+     mavenCentral()        
+     maven { url "http://repo.maven.apache.org/maven2" }
+     //maven { url "http://oss.sonatype.org/service/local/staging/deploy/maven2/" }
+     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    
+}
+dependencies {
+    //compile group: 'org.nd4j', name: 'nd4j-instrumentation', version:'0.0.3.5.5.3-SNAPSHOT'
+    compile (group: 'org.deeplearning4j', name: 'deeplearning4j-nlp', version:'0.0.3.3.3.alpha1-SNAPSHOT'){
+            exclude group: "com.sun.jdmk", module: "jmxtools"
+            exclude group: "com.sun.jmx", module: "jmxri"
+            exclude group: "javax.mail", module: "mail"
+            exclude group: "javax.jms", module: "jms"
+
+    }
+    compile group: 'org.nd4j', name: 'nd4j-jblas', version:'0.0.3.5.5.3-SNAPSHOT'
+}
