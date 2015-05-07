@@ -10,23 +10,36 @@ description = """DeepLearning4j Examples"""
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
+ext.ND4J_VERSION="0.0.3.5.5.3-SNAPSHOT"
+ext.DL4J_VERSION="0.0.3.3.3.alpha1-SNAPSHOT"
 
 
 repositories {
-     mavenCentral()        
-     maven { url "http://repo.maven.apache.org/maven2" }
-     //maven { url "http://oss.sonatype.org/service/local/staging/deploy/maven2/" }
+     // Nexus Snapshot
      maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+
+     // Nexus Releases 
+     maven { url "http://oss.sonatype.org/service/local/staging/deploy/maven2/" }
+
+     mavenCentral()        
+
+     maven { url "http://repo.maven.apache.org/maven2" }
+
+     //maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     
 }
 dependencies {
-    //compile group: 'org.nd4j', name: 'nd4j-instrumentation', version:'0.0.3.5.5.3-SNAPSHOT'
-    compile (group: 'org.deeplearning4j', name: 'deeplearning4j-nlp', version:'0.0.3.3.3.alpha1-SNAPSHOT'){
+    //compile group: 'org.nd4j', name: 'nd4j-instrumentation', version:ND4J_VERSION
+    compile (group: 'org.deeplearning4j', name: 'deeplearning4j-nlp', version:DL4J_VERSION){
             exclude group: "com.sun.jdmk", module: "jmxtools"
             exclude group: "com.sun.jmx", module: "jmxri"
             exclude group: "javax.mail", module: "mail"
             exclude group: "javax.jms", module: "jms"
 
     }
-    compile group: 'org.nd4j', name: 'nd4j-jblas', version:'0.0.3.5.5.3-SNAPSHOT'
+    //compile group: 'org.nd4j', name: 'nd4j-jblas', version:ND4J_VERSION
+    compile 'org.nd4j:nd4j-jblas:$ND4J_VERSION'
+    compile 'org.nd4j:nd4j-api:$ND4J_VERSION'
+    compile 'org.nd4j:nd4j-jcublas-7.0:$ND4J_VERSION'
+
 }
