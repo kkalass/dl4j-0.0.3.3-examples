@@ -89,8 +89,8 @@ Um etwas genauer reinzuzoomen, kann man yrange und xrange setzen. Der ganze Plot
 $ gnuplot
 set terminal pdf enhanced color size 100in,100in font "Arial,100"
 set output "plot-center.pdf"
-set yrange [-1000, 1000]
-set xrange [-1000, 1000]
+set yrange [-1000 : 1000]
+set xrange [-1000: 1000]
 plot 'coords.dat' using  1:2 title 'title', '' using 1:2:3 with labels offset 0, char 1
 unset output
 ```
