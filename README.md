@@ -35,6 +35,53 @@ $ gradle build eclipse
 
 JCuda
 -----
-If you want to get rid of jcuda exceptions, install it from:
+If you want to get rid of jcuda exceptions, install cuda lib from:
 
-http://jcuda.org/downloads/downloads.html
+https://developer.nvidia.com/cuda-downloads
+
+On Ubuntu, if you use the repos:
+```
+$ sudo dpkg -i ~/Downloads/cuda-repo-ubuntu1410_7.0-28_amd64.deb
+$ sudo apt-get update
+$ # I needed to remove some stuff: sudo apt-get remove wine1.6 wine winetricks 
+$ sudo apt-get install cuda-cudart-7-0 cuda-cublas-7-0 cuda-cublas-dev-7-0 nvidia-cuda-toolkit
+```
+
+Don't forget to restart your computer!
+
+TSNE
+----
+
+words.txt Datei erzeugen:
+```
+Word2VecExample
+```
+
+
+coords.csv - 'plot' erzeugen:
+```
+TsneExample
+```
+
+Rendern mit gnuplot
+===================
+Datei in Gnuplot-Format übersetzen
+
+```bash
+$ tr  ',' '\t' > coords.dat < coords.csv
+```
+
+Datei in Gnuplot rendern:
+```bash
+$ gnuplot
+gnuplot> set autoscale
+gnuplot> plot 'coords.dat' using  1:2 title 'title', '' using 1:2:3 with labels offset 0, char 1
+```
+
+Rendern mit Octave
+==================
+
+```bash
+$ octave
+TODO
+```
