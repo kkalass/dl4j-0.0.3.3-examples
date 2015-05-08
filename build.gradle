@@ -11,15 +11,20 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 ext.ND4J_VERSION="0.0.3.5.5.3-SNAPSHOT"
-ext.DL4J_VERSION="0.0.3.3.3.alpha1-SNAPSHOT"
+ext.DL4J_VERSION="0.0.3.3.3.alpha1"
 
 
 repositories {
+     mavenLocal()
+
      // Nexus Snapshot
      maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
      // Nexus Releases 
      maven { url "http://oss.sonatype.org/service/local/staging/deploy/maven2/" }
+
+     // JBoss Nexus - needed for jms-1.1.jar
+     maven { url "https://repository.jboss.org/nexus/content/groups/public" }
 
      mavenCentral()        
 
@@ -30,7 +35,7 @@ repositories {
 }
 dependencies {
     //compile group: 'org.nd4j', name: 'nd4j-instrumentation', version:ND4J_VERSION
-    compile 'org.deeplearning4j:deeplearning4j-ui:$DL4J_VERSION'
+    compile 'org.deeplearning4j:deeplearning4j-ui:'+DL4J_VERSION
     compile (group: 'org.deeplearning4j', name: 'deeplearning4j-nlp', version:DL4J_VERSION){
             exclude group: "com.sun.jdmk", module: "jmxtools"
             exclude group: "com.sun.jmx", module: "jmxri"
@@ -39,8 +44,8 @@ dependencies {
 
     }
     //compile group: 'org.nd4j', name: 'nd4j-jblas', version:ND4J_VERSION
-    compile 'org.nd4j:nd4j-jblas:$ND4J_VERSION'
-    compile 'org.nd4j:nd4j-api:$ND4J_VERSION'
-    compile 'org.nd4j:nd4j-jcublas-7.0:$ND4J_VERSION'
-
+    compile 'org.nd4j:nd4j-jblas:'+ND4J_VERSION
+    compile 'org.nd4j:nd4j-api:'+ND4J_VERSION
+    compile 'org.nd4j:nd4j-jcublas-7.0:'+ND4J_VERSION
+    compile 'log4j:log4j:1.2.16'
 }
