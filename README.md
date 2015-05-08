@@ -74,14 +74,24 @@ $ tr  ',' '\t' > coords.dat < coords.csv
 Datei in Gnuplot rendern:
 ```bash
 $ gnuplot
-gnuplot> set autoscale
-gnuplot> plot 'coords.dat' using  1:2 title 'title', '' using 1:2:3 with labels offset 0, char 1
+set terminal pdf enhanced color size 100in,100in font "Arial,100"
+set output "plot.pdf"
+set autoscale
+plot 'coords.dat' using  1:2 title 'title', '' using 1:2:3 with labels offset 0, char 1
+unset output
 ```
 
-Rendern mit Octave
-==================
+Als Ergebnis hat man dann die PDF-Datei, in der man den ganzen Wertebereich sieht. 
+
+Um etwas genauer reinzuzoomen, kann man yrange und xrange setzen. Der ganze Plotting-Code sieht dann so aus:
 
 ```bash
-$ octave
-TODO
+$ gnuplot
+set terminal pdf enhanced color size 100in,100in font "Arial,100"
+set output "plot-center.pdf"
+set yrange [-1000, 1000]
+set xrange [-1000, 1000]
+plot 'coords.dat' using  1:2 title 'title', '' using 1:2:3 with labels offset 0, char 1
+unset output
 ```
+
